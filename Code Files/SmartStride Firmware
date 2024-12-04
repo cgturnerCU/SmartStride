@@ -1,0 +1,68 @@
+#include <Wire.h>
+#include "SparkFun_VL53L1X.h";
+
+SFEVL53L1X ir_tof;
+const int motor1 = 6; //pwm TOF motor
+const int motor2 = 5; //digital FSR motor
+const int FSR = A6; //FSR input reading
+
+void setup() {
+  Wire.begin();
+  pinMode(motor1, OUTPUT);
+  pinMode(motor2, OUTPUT);
+  pinMode(FSR, INPUT);
+  Serial.begin(9600);
+  Serial.println("init");
+
+  if (ir_tof.begin() != 0) //Begin returns 0 on a good init
+  {
+    Serial.println("Sensor failed to begin. Please check wiring. Freezing...");
+    while (1);
+  }
+
+  //ir_tof.setDistanceModeShort();
+  ir_tof.setDistanceModeLong();
+}
+
+void loop() {
+  //set up variables
+  double motor_str; //strength of vibrations
+  double force = analogRead(FSR); //force reading
+  double max_dist = 2000;
+
+  //IR TOF setup and value read
+  ir_tof.startRanging();
+  while (!ir_tof.checkForDataReady()) {
+    delay(1);
+  }
+ 
+  double dist = ir_tof.getDistance();
+
+  ir_tof.stopRanging();
+
+  //Serial testing
+  Serial.print("distance: ");
+  Serial.println(dist);
+
+  //Serial.print("force: ");
+  //Serial.println(force);
+ 
+  //distance motor output
+  motor_str = (255) * ((max_dist - dist) / max_dist);
+ 
+  //if the distance read is greater than the max distance
+  if (motor_str < 0)
+    motor_str = 0;
+ 
+  //Serial.print("motor strength: ");
+  //Serial.println(motor_str);
+  analogWrite(motor1, motor_str);
+
+  //force motor feedback
+  if (force > 10)
+    digitalWrite(motor2, HIGH);
+  else
+    digitalWrite(motor2, LOW);
+
+  delay(100);
+}
