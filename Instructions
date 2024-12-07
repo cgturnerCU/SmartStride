@@ -1,0 +1,32 @@
+Step 1:
+Print and remove supports from all parts. Clean any burrs or overhangs. Work all the threads smooth.
+
+Step 2:
+Set in all the heat set inserts. The M2.5 inserts go inside the sensor segment.
+
+Step 3:
+Solder all components to the main PCB, including connectors and Pro Micro.
+
+Step 4:
+Insert and screw in the Main PCB with two M3 Screws to the main handle. Then screw in the Power Supply module with two M3 screws.
+
+Step 5:
+Connect the PSU to main PCB. Next, insert the LiPO from the bottom of the main handle and connect to PSU JST connector.
+
+Step 6:
+Screw on main handle bottom cover, then run connection cables through the main handle. Also screw in the eye bolt.
+
+Step 7:
+Screw on main cover plate, then screw on the handle cap with lanyard.
+
+Step 8:
+Pass wire harness and rubber band through middle segments to desired length.
+
+Step 9:
+Run wires through the sensor cover. Connect sensors and begin to screw TOF sensor in. Also screw in bottom cover and pass FSR through the slot.
+
+Step 10:
+Screw on FSR tip, manage cables and rubber band. Install Sensor Cover plate.
+
+Step 11:
+Put Switch Plate on the main handle and switch on. Your SmartStride should now be functional!
